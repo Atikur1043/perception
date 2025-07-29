@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+pydantic-settings
+motor
+beanie
+passlib[bcrypt]
+python-jose[cryptography]
+python-dotenv
+pydantic[email]
+groq 
+google-auth
+requests
