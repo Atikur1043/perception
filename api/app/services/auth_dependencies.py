@@ -6,7 +6,6 @@ from app.core.config import settings
 from app.db.database import User
 from app.models.token_models import TokenData
 
-# This tells FastAPI where the client can go to get a token
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
 
 async def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
@@ -20,7 +19,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
-        # Decode the JWT
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
         email: str | None = payload.get("sub")
         if email is None:
@@ -29,7 +27,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
     except JWTError:
         raise credentials_exception
 
-    # Find the user in the database
     user = await User.find_one(User.email == token_data.email)
     if user is None:
         raise credentials_exception

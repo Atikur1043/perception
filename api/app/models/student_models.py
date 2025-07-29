@@ -1,13 +1,13 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List
-from .user_models import PyObjectId, UserOut # Import UserOut
+from .user_models import PyObjectId, UserOut 
 
 class QuestionSetForStudentOut(BaseModel):
     """A simplified QuestionSet view for students."""
     id: PyObjectId
     title: str
     question: str
-    creator: UserOut  # Add this line
+    creator: UserOut 
 
     class Config:
         from_attributes = True

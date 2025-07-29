@@ -3,7 +3,6 @@ from datetime import timedelta
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 
-# Import Google's libraries for verification
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
@@ -65,23 +64,16 @@ async def login_with_google(cred: GoogleCredential):
         user = await User.find_one(User.email == email)
 
         if not user:
-            # --- IMPROVED USERNAME LOGIC ---
-            # 1. Get the user's name from the Google token
             name = idinfo.get("name")
             
-            # 2. Create a base username from the name (e.g., "John Smith" -> "johnsmith")
-            #    or fall back to the email prefix if the name is not available.
             if name:
                 base_username = name
             else:
                 base_username = email.split('@')[0]
 
-            # 3. Ensure the username is unique
             username = base_username
             while await User.find_one(User.username == username):
-                # If the username is taken, append a short random string
                 username = base_username + secrets.token_hex(2)
-            # --- END OF IMPROVED LOGIC ---
 
             new_user = User(
                 username=username,

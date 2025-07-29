@@ -18,7 +18,6 @@ class QuestionSet(Document):
     question: str
     model_answer: str
     creator: Link[User]
-    # Add a list to store assigned students. It can be empty.
     assigned_students: List[Link[User]] = []
 
     class Settings:

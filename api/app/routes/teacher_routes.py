@@ -17,7 +17,6 @@ async def create_question_set(qs_data: QuestionSetCreate, current_user: User = D
     if qs_data.assigned_usernames:
         students = [s async for s in User.find({"username": {"$in": qs_data.assigned_usernames}, "role": "student"})]
         if len(students) != len(set(qs_data.assigned_usernames)):
-             # Using set to handle duplicate usernames in input
             raise HTTPException(status.HTTP_404_NOT_FOUND, "One or more student usernames not found.")
         assigned_student_list = students
 
@@ -64,7 +63,6 @@ async def get_teacher_question_sets(current_user: User = Depends(get_current_use
 
 @router.get("/question-sets/{qs_id}/submissions", response_model=List[SubmissionReviewOut])
 async def get_submissions_for_set(qs_id: PydanticObjectId, current_user: User = Depends(get_current_user)):
-    # ROBUST FIX: Fetch by ID first, then verify ownership.
     question_set = await QuestionSet.get(qs_id)
     if not question_set or question_set.creator.ref.id != current_user.id:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Question set not found or access denied.")

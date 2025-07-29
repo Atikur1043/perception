@@ -17,14 +17,12 @@ async def evaluate_student_answer(
     - Requires authentication.
     - Only accessible by users with the 'teacher' role.
     """
-    # Ensure only teachers can use this endpoint
     if current_user.role != "teacher":
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to perform this action.",
         )
 
-    # Get the evaluation from the AI service
     evaluation_result = await get_ai_evaluation(
         model_answer=request.model_answer,
         student_answer=request.student_answer

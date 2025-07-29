@@ -10,18 +10,15 @@ export default function MainLayout({ children }) {
   const router = useRouter();
 
   useEffect(() => {
-    // Check auth status on component mount
     checkAuth();
   }, [checkAuth]);
 
   useEffect(() => {
-    // Redirect to login if not authenticated after loading
     if (!isLoading && !isAuthenticated) {
       router.push('/login');
     }
   }, [isLoading, isAuthenticated, router]);
 
-  // Show a loading state while checking auth
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -30,11 +27,10 @@ export default function MainLayout({ children }) {
     );
   }
 
-  // Render the layout if authenticated
   return isAuthenticated ? (
     <div className="relative flex min-h-screen flex-col">
       <Navbar />
       <main className="flex-1 container py-8">{children}</main>
     </div>
-  ) : null; // Render nothing while redirecting
+  ) : null; 
 }

@@ -19,7 +19,7 @@ class UserCreate(BaseModel):
 class UserOut(BaseModel):
     """Pydantic model for representing a user in API responses."""
     id: PyObjectId
-    username: str # Add this line
+    username: str 
     email: EmailStr
     role: str
 

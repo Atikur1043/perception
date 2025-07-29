@@ -1,8 +1,7 @@
 import json
-from groq import AsyncGroq  # Import the Asynchronous client
+from groq import AsyncGroq 
 from app.core.config import settings
 
-# Initialize the AsyncGroq client
 client = AsyncGroq(api_key=settings.GROQ_API_KEY)
 
 async def get_ai_evaluation(model_answer: str, student_answer: str) -> dict:
@@ -24,7 +23,6 @@ async def get_ai_evaluation(model_answer: str, student_answer: str) -> dict:
     """
 
     try:
-        # This await call will now work correctly with the AsyncGroq client
         chat_completion = await client.chat.completions.create(
             messages=[
                 {

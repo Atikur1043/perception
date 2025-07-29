@@ -29,7 +29,7 @@ export function StudentDashboard() {
       setSubmittedSets(submittedRes.data);
     } catch (error) {
       toast.error('Failed to load dashboard data.');
-      console.error(error); // Log the full error for debugging
+      console.error(error); 
     } finally {
       setIsLoading(false);
     }
@@ -109,7 +109,6 @@ export function StudentDashboard() {
   );
 }
 
-// Sub-component for answering a question set
 function AnswerQuestionSetItem({ qs, onSubmitted }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { register, handleSubmit, formState: { isSubmitting } } = useForm();

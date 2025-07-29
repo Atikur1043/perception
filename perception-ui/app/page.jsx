@@ -6,9 +6,12 @@ export default function HomePage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
       <div className="text-center max-w-4xl p-8">
-        <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400 mb-4">
-          📝 Perception
-        </h1>
+        <div className="flex justify-center items-center mb-4">
+          <img src="/logo192.png" alt="Perception Logo" className="h-16 w-16 mr-4" />
+          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+            Perception
+          </h1>
+        </div>
         <p className="text-xl md:text-2xl text-muted-foreground mb-8">
           AI-Powered Online Evaluation Portal. Fairer, faster, and more insightful feedback for descriptive answers.
         </p>

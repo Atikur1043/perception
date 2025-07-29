@@ -1,15 +1,14 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ClientLayout } from "./client-layout"; // Import our new client layout
+import { ClientLayout } from "./client-layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// Your metadata now lives here, in a Server Component!
 export const metadata = {
   title: "Perception",
   description: "AI-Powered Online Evaluation Portal",
   icons: {
-    icon: "/logo192.png", // This points to public/logo.png
+    icon: "/logo192.png",
   },
 };
 

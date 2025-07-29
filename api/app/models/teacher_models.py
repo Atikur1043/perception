@@ -6,7 +6,6 @@ class QuestionSetCreate(BaseModel):
     title: str = Field(..., min_length=3, max_length=100)
     question: str = Field(..., min_length=10)
     model_answer: str = Field(..., min_length=10)
-    # Accept a list of usernames. It's optional.
     assigned_usernames: Optional[List[str]] = None
 
 class QuestionSetOut(BaseModel):
@@ -15,7 +14,6 @@ class QuestionSetOut(BaseModel):
     question: str
     model_answer: str
     creator: UserOut
-    # Include the list of assigned students in the response
     assigned_students: List[UserOut]
 
     class Config:

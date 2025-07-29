@@ -38,10 +38,8 @@ export function TeacherDashboard() {
 
   const onCreateSet = async (data) => {
     try {
-      // Prepare the payload, including the list of usernames
       const payload = { ...data };
       if (data.assigned_usernames) {
-        // Split the comma-separated string into an array of usernames
         payload.assigned_usernames = data.assigned_usernames.split(',').map(name => name.trim()).filter(name => name);
       } else {
         payload.assigned_usernames = [];
@@ -50,7 +48,7 @@ export function TeacherDashboard() {
       await api.post('/api/teacher/question-sets', payload);
       toast.success('New question set created!');
       reset();
-      fetchQuestionSets(); // Refresh the list
+      fetchQuestionSets();
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Failed to create question set.');
     }
@@ -118,7 +116,6 @@ export function TeacherDashboard() {
   );
 }
 
-// Sub-component for displaying a single question set and its submissions
 function QuestionSetItem({ qs }) {
   const [submissions, setSubmissions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -149,7 +146,7 @@ function QuestionSetItem({ qs }) {
     try {
         await api.put(`/api/teacher/submissions/${submissionId}/finalize`, { final_score: parseInt(finalScore) });
         toast.success("Score finalized!");
-        fetchSubmissions(); // Refresh submissions list
+        fetchSubmissions(); 
     } catch (error) {
         toast.error("Failed to finalize score.");
     }

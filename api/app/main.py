@@ -27,16 +27,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- API Routers ---
 app.include_router(auth_routes.router, prefix="/auth", tags=["Authentication"])
 
-# Teacher-specific routes
 app.include_router(teacher_routes.router, prefix="/api/teacher", tags=["Teacher"])
 
-# Student-specific routes
 app.include_router(student_routes.router, prefix="/api/student", tags=["Student"])
 
-# The generic evaluation route (we can keep it for direct testing or remove later)
 app.include_router(evaluation_routes.router, prefix="/api", tags=["Evaluation"])
 
 
