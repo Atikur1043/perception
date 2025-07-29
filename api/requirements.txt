@@ -10,3 +10,4 @@ pydantic[email]
 groq 
 google-auth
 requests
+python-multipart
