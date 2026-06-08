@@ -3,6 +3,7 @@ uvicorn[standard]
 pydantic-settings
 motor
 beanie
+bcrypt==3.2.2
 passlib[bcrypt]
 python-jose[cryptography]
 python-dotenv
